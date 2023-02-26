@@ -7,14 +7,11 @@
       <div class="row">
         <div class="col-xs">
           <mat-form-field>
-            <input placeholder="Id" formControlName="id" matInput type="text">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs">
-          <mat-form-field>
             <input placeholder="Title" formControlName="title" matInput type="text">
+            <div class="messages" *ngIf="titleField.touched && titleField.invalid">
+              <mat-error *ngIf="titleField.hasError('required')">Este campo es rerquerido</mat-error>
+              <mat-error *ngIf="titleField.hasError('minlength')">Debe tener mas de 4 caracteres</mat-error>
+            </div>
           </mat-form-field>
         </div>
       </div>
@@ -23,9 +20,9 @@
           <mat-form-field>
             <input placeholder="Price" formControlName="price" matInput type="number">
           </mat-form-field>
-          <div *ngIf="priceField.errors && priceField.dirty">
-            <p *ngIf="priceField.hasError('price_invalid')">no te debes pasar de 10000</p>
-            <p *ngIf="priceField.hasError('required')">el campo es requerido</p>
+          <div class="messages" *ngIf="priceField.errors && priceField.dirty">
+            <mat-error *ngIf="priceField.hasError('price_invalid')">No te debes pasar de 10000</mat-error>
+            <mat-error *ngIf="priceField.hasError('required')">El campo es requerido</mat-error>
           </div>
         </div>
       </div>
@@ -38,8 +35,22 @@
       </div>
       <div class="row">
         <div class="col-xs">
-          <img *ngIf="(image$ | async) as image" [src]="image" alt="">
-          <input type="file" (change)="uploadFile($event)">
+          <div *ngFor="let imageField of imagesField.value">
+            <img *ngIf="imageField" [src]="imageField" style="width: 200px;">
+          </div>
+          <input type="file" (change)="uploadFile($event)" multiple="multiple">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field appearance="fill">
+            <mat-label>Category: </mat-label>
+            <mat-select formControlName="categoryId">
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </mat-card-content>

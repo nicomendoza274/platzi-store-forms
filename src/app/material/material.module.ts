@@ -19,6 +19,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [],
@@ -41,7 +46,12 @@ import { MatStepperModule } from '@angular/material/stepper';
     LayoutModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatStepperModule
+    MatStepperModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -61,7 +71,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     LayoutModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatProgressBarModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

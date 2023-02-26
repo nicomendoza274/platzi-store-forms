@@ -8,7 +8,11 @@
         <div class="col-xs">
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input placeholder="email" formControlName="email" matInput type="email">
+            <input placeholder="email" formControlName="email" matInput type="email" autocomplete="off" name="user">
+            <div *ngIf="isEmailInvalid">
+              <mat-error *ngIf="emailField.hasError('required')">Este campo es requerido</mat-error>
+              <mat-error *ngIf="emailField.hasError('email')">Este campo debe ser un email</mat-error>
+            </div>
           </mat-form-field>
         </div>
       </div>
@@ -16,7 +20,12 @@
         <div class="col-xs">
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input placeholder="password" formControlName="password" matInput type="password">
+            <input placeholder="password" formControlName="password" matInput type="password" autocomplete="new-password" name="pass">
+            <div *ngIf="isPasswordInvalid">
+              <mat-error *ngIf="passwordField.hasError('required')">Este campo es requerido</mat-error>
+              <mat-error *ngIf="passwordField.hasError('invalid_password')">Debe tener almenos un numero</mat-error>
+              <mat-error *ngIf="passwordField.hasError('minlength')">Debe tener al menos 6 caracteres</mat-error>
+            </div>
           </mat-form-field>
         </div>
       </div>
@@ -24,7 +33,26 @@
         <div class="col-xs">
           <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input placeholder="password" formControlName="password" matInput type="password">
+            <input placeholder="password" formControlName="confirmPassword" matInput type="password">
+            <div *ngIf="form.get('confirmPassword').touched && form.errors">
+              <mat-error *ngIf="form.hasError('match_password')">No son iguales</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-radio-group formControlName="type" aria-label="Select an option">
+            <mat-radio-button value="company">Company</mat-radio-button>
+            <mat-radio-button value="customer">Customer</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input placeholder="company" formControlName="companyName" matInput type="text">
           </mat-form-field>
         </div>
       </div>

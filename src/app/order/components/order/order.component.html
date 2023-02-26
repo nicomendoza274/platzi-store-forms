@@ -6,7 +6,7 @@
         <div class="row" *ngFor="let product of products">
           <div class="col-xs-12 col-sm-2 col-md-2">
             <div class="box">
-              <img class="image" [src]="product.image" alt="">
+              <img class="image" [src]="product.images[0]" alt="">
             </div>
           </div>
           <div class="col-xs-12 col-sm-5 col-md-5">
@@ -25,7 +25,43 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Datos personales</ng-template>
-    <h1>contenifo</h1>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-xs">
+              <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input type="text" placeholder="Nombre" formControlName="name" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs">
+              <button mat-raised-button color="primary" type="button" (click)="addAddressField()">Add Address</button>
+              <div formArrayName="address" *ngFor="let address of addressField.controls; let i=index">
+                <div [formGroupName]="i">
+                  <mat-form-field>
+                    <mat-label>Zip Code</mat-label>
+                    <input type="text" placeholder="Zip" formControlName="zip" matInput>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Text</mat-label>
+                    <input type="text" placeholder="text" formControlName="text" matInput>
+                  </mat-form-field>
+                  <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="deleteAddressField(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">Next</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pago</ng-template>

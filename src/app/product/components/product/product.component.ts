@@ -26,19 +26,15 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartService
   ) {
-    console.log('1. constructor');
   }
 
   ngOnInit() {
-    console.log('3. ngOnInit');
   }
 
   ngOnDestroy() {
-    console.log('5. ngOnDestroy');
   }
 
   addCart() {
-    console.log('añadir al carrito');
     this.cartService.addCart(this.product);
     // this.productClicked.emit(this.product.id);
   }

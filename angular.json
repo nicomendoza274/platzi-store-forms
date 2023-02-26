@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -62,7 +63,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             },
             "stag": {
               "fileReplacements": [
@@ -123,7 +126,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -133,15 +137,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },
@@ -162,6 +162,7 @@
   },
   "defaultProject": "platzi-store",
   "cli": {
-    "analytics": "a1b43abb-96c0-45f0-b938-f192ec621d4f"
+    "analytics": "a1b43abb-96c0-45f0-b938-f192ec621d4f",
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }
