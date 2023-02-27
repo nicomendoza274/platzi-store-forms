@@ -5,7 +5,7 @@
   "background_color": "#3F51B5",
   "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "https://angular-pwa-platzi-7fa0b.web.app/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
